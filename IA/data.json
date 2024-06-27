@@ -1,0 +1,18 @@
+[
+    {
+        "question": "What is your name?",
+        "answer": true
+    },
+    {
+        "question": "Are you human?",
+        "answer": false
+    },
+    {
+        "question": "Do you have a wife?",
+        "answer": false
+    },
+    {
+        "question": "A cookie is a type of food",
+        "answer": true
+    }
+]
