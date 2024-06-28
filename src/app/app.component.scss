@@ -1,0 +1,104 @@
+section {
+    background-image: url('../assets/img/Bg-game.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    &.game-over {
+        filter: grayscale(100%);
+        transition: filter 1s ease-in-out;
+      }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .beaver-svg {
+        position: absolute;
+        bottom: 6em;
+        left: 10em;
+        animation: wave-animation 2s infinite;
+    }
+
+    .firewood-svg {
+        position: absolute;
+        bottom: 0em;
+        right: 2em;
+        width: 550px;
+    }
+
+    .firewood {
+        position: absolute;
+        bottom: 0;
+        right: 2em;
+        width: 500px;
+        transition: transform 2s ease-in-out, bottom 2s ease-in-out, right 2s ease-in-out;
+    }
+
+    .firewood.move {
+        bottom: 13em;
+        right: 38em;
+        transform: translate(0, 0);
+    }
+
+    @keyframes wave-animation {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .start-button {
+        margin-top: 20px;
+        padding: 40px 40px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        width: 300px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .start-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .start-button:active {
+        background-color: #004080;
+    }
+
+    .start-button:disabled {
+        background-color: #b0b0b0;
+        color: red;
+    }
+}

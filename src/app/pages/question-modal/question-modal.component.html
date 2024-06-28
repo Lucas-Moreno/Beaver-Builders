@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Question {{currentQuestionIndex + 1}}/{{data.questions.length}}</h1>
+<div mat-dialog-content>
+  <p>{{ data.questions[currentQuestionIndex].question }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="checkAnswer(true)">Vrai</button>
+  <button mat-button (click)="checkAnswer(false)">Faux</button>
+</div>
