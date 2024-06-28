@@ -1,4 +1,4 @@
-<section [ngClass]="{'game-over': isGameOver}">
+<section [ngClass]="backgroundClass">
   <div class="confetti-container" *ngIf="isGameWin">
     <div class="confetti">
       <i style="--speed: 10; --bg: yellow" class="square"></i>
@@ -111,7 +111,7 @@
   </div>
   <div class="image-container">
     <img *ngIf="!isGameOver && !isGameWin" class="beaver-svg" src="../assets/img/beaver.svg" alt="">
-    <img *ngIf="isGameOver" class="beaver-svg" src="../assets/img/beaver-sad.svg" alt="">
+    <img *ngIf="!isGameWin && isGameOver" class="beaver-svg" src="../assets/img/beaver-sad.svg" alt="">
     <img *ngIf="isGameWin" class="beaver-svg" src="../assets/img/beaver-happy.svg" alt="">
     <img class="firewood-svg" src="../assets/img/firewood-groupe.svg" alt="">
     <img *ngFor="let logEntry of logEntries; let i = index"
@@ -119,8 +119,15 @@
        [ngClass]="{'move': logEntry.moving}"
        [style.bottom]="(12 + i * 2.8) + 'em'"
        class="firewood">
-    <button class="start-button"  (click)="openDialog()" [disabled]="isGameOver">
-      {{ isGameWin ? 'Félicitations' : (isGameOver ? 'Game Over' : 'Commencer') }}
-    </button>
+       <button *ngIf="!isGameOver" class="start-button" (click)="openDialog()">
+        Commencer
+      </button>
+      <button *ngIf="isGameOver && isGameWin" class="start-button green" (click)="openDialog()" [disabled]="isGameOver">
+        Félicitations
+      </button>
+      <button *ngIf="isGameOver && !isGameWin" class="start-button" (click)="openDialog()" [disabled]="isGameOver">
+        Game Over
+      </button>
+      
   </div>
 </section>

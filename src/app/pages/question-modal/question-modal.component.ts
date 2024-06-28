@@ -21,11 +21,11 @@ export class QuestionModalComponent {
 
   checkAnswer(userAnswer: boolean) {
     const question = this.data.questions[this.currentQuestionIndex];
-    if (question.answer === userAnswer) {
+    if (question.reponse === userAnswer) {
       this.correctAnswers++;
+      this.globalService.addLogEntry();
     } else {
       this.incorrectAnswers++;
-      this.globalService.addLogEntry();
     }
 
     if (this.currentQuestionIndex < this.data.questions.length - 1) {

@@ -13,36 +13,51 @@ export class AppComponent {
   logEntries: { id: number, moving: boolean }[] = [];
   isGameOver = false;
   isGameWin = false;
+  questions: any[] = [];
 
-  constructor(public dialog: MatDialog, private globalService: GlobalService) {}
+  backgroundClass = 'background-one';
 
-  ngOnInit(): void {
+  constructor(public dialog: MatDialog, private globalService: GlobalService) { }
+
+  async ngOnInit() {
     this.globalService.logEntries$.subscribe(logEntries => {
       this.logEntries = logEntries;
       if (this.logEntries.length >= 5) {
         this.isGameOver = true;
       }
     });
+
+    try {
+      this.globalService.get('/questions').subscribe(async (res) => {
+        this.questions = await res.slice(0, 5);
+      });
+    } catch (error) {
+      console.error('Erreur lors de la récupération des questions', error);
+    }
   }
 
   openDialog() {
-    const questions = this.globalService.getRandomQuestions(5);
-    const dialogRef = this.dialog.open(QuestionModalComponent, {
-      width: '400px',
-      data: { questions }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.incorrect > 3) {
-        this.isGameOver = true;
-      } else {
-        this.isGameWin = true;
-      }
-      console.log('Correct Answers:', result.correct);
-      console.log('Incorrect Answers:', result.incorrect);
-    });
+    if (this.questions.length > 0) {
+      const dialogRef = this.dialog.open(QuestionModalComponent, {
+        width: '400px',
+        data: { 'questions': this.questions }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result.incorrect > 3) {
+          this.isGameOver = true;
+        } else {
+          this.isGameWin = true;
+          this.toggleBackground();
+        }
+        console.log('Correct Answers:', result.correct);
+        console.log('Incorrect Answers:', result.incorrect);
+      });
+    }
   }
-
- 
+  
+  toggleBackground() {
+    this.isGameOver = !this.isGameOver;
+    this.backgroundClass = this.isGameOver ? 'background-two' : 'background-one';
+  }
 
 }

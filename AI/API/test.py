@@ -1,10 +1,12 @@
-
 from flask import Flask, jsonify, request
 import requests
 import json
 import re
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"
 headers = {"Authorization": "Bearer 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", "X-use-cache": "false"}
@@ -50,6 +52,7 @@ def generate_questions():
     json_pattern = re.compile(r'\[\s*{.*?}\s*]', re.DOTALL)
     match = json_pattern.search(generated_text)
 
+    new_questions_responses = []
     if match:
         new_questions_responses = json.loads(match.group())
         if isinstance(all_questions_responses, list):
@@ -64,13 +67,13 @@ def generate_questions():
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
-    new_questions_responses = generate_questions()
-
     try:
         with open('questions_responses.json', 'r', encoding='utf-8') as f:
             questions_responses = json.load(f)
     except FileNotFoundError:
         questions_responses = []
+
+    return jsonify(questions_responses)
 
 if __name__ == '__main__':
     app.run(debug=True)

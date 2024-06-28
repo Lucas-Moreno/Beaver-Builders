@@ -1,62 +1,70 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
 
+  apiUrl = "http://127.0.0.1:5000";
+
   private logEntriesSubject = new BehaviorSubject<{ id: number, moving: boolean }[]>([]);
   logEntries$ = this.logEntriesSubject.asObservable();
 
-  private questions = [
-    {
-      "question": "Les insectes sont les appareils biologiques les plus abondants sur la planète?",
-      "answer": false
-    },
-    {
-      "question": "La biodiversité menace particulièrement l'avenir de la planète?",
-      "answer": true
-    },
-    {
-      "question": "Les espèces qui cohabitent dans un écosystème dépendent les unes des autres pour leur survie, c'est ce qu'on appelle la \"coopération\" écologique.",
-      "answer": false
-    },
-    {
-      "question": "Les forêts tropicales sont-elles les régions les plus pollueuses de la planète?",
-      "answer": false
-    },
-    {
-      "question": "Lors de la décomposition d'une feuille, la microbiote bénéficie de la présence d'oxygène pour métaboliser efficacement les molécules organiques.",
-      "answer": false
-    },
-    {
-      "question": "L'étude de la biomasse est essentielle pour évaluer l'état de santé d'un écosystème.",
-      "answer": true
-    },
-    {
-      "question": "Les écosystèmes sont particulièrement vulnérables aux changements climatiques.",
-      "answer": true
-    },
-    {
-      "question": "L'aire de répartition de l'ours brun (Ursus arctos) est en constante augmentation dans les dernières années en raison de sa résilience et de la préservation des habitats.",
-      "answer": false
-    },
-    {
-      "question": "Les termes \"écologie\" et \"biologie\" sont synonymes?",
-      "answer": false
-    },
-    {
-      "question": "La pollution par le plastique a un impact négatif sur les écosystèmes marins.",
-      "answer": true
-    }
-  ];
+  // private questions = [
+  //   {
+  //     "question": "Les insectes sont les appareils biologiques les plus abondants sur la planète?",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "La biodiversité menace particulièrement l'avenir de la planète?",
+  //     "answer": true
+  //   },
+  //   {
+  //     "question": "Les espèces qui cohabitent dans un écosystème dépendent les unes des autres pour leur survie, c'est ce qu'on appelle la \"coopération\" écologique.",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "Les forêts tropicales sont-elles les régions les plus pollueuses de la planète?",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "Lors de la décomposition d'une feuille, la microbiote bénéficie de la présence d'oxygène pour métaboliser efficacement les molécules organiques.",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "L'étude de la biomasse est essentielle pour évaluer l'état de santé d'un écosystème.",
+  //     "answer": true
+  //   },
+  //   {
+  //     "question": "Les écosystèmes sont particulièrement vulnérables aux changements climatiques.",
+  //     "answer": true
+  //   },
+  //   {
+  //     "question": "L'aire de répartition de l'ours brun (Ursus arctos) est en constante augmentation dans les dernières années en raison de sa résilience et de la préservation des habitats.",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "Les termes \"écologie\" et \"biologie\" sont synonymes?",
+  //     "answer": false
+  //   },
+  //   {
+  //     "question": "La pollution par le plastique a un impact négatif sur les écosystèmes marins.",
+  //     "answer": true
+  //   }
+  // ];
 
-  constructor() { }
+  constructor(public http: HttpClient,) { }
 
-  getRandomQuestions(num: number) {
-    return this.questions.sort(() => 0.5 - Math.random()).slice(0, num);
+  get(path: string) {
+    return this.http.get<any[]>(`${this.apiUrl}${path}`);
   }
+
+  // getRandomQuestions(num: number) {
+  //   return this.questions.sort(() => 0.5 - Math.random()).slice(0, num);
+  // }
 
   addLogEntry() {
     const logEntries = this.logEntriesSubject.value;

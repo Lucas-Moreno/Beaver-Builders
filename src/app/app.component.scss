@@ -1,9 +1,16 @@
 section {
-    background-image: url('../assets/img/Bg-game.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
+
+    &.background-two {
+        background-image: url('../assets/img/bg-turn-on.svg');
+    }
+
+    &.background-one {
+        background-image: url('../assets/img/bg-turn-off.svg');
+    }
 
     &.game-over {
         filter: grayscale(100%);
@@ -74,6 +81,10 @@ section {
         justify-content: center;
         align-items: center;
         animation: pulse 1.5s infinite;
+
+        &.green {
+            background-color: #5cb85c !important;
+        }
     }
 
     @keyframes pulse {
@@ -98,7 +109,7 @@ section {
     }
 
     .start-button:disabled {
-        background-color: #b0b0b0;
-        color: red;
+        background-color: red;
+        color: white;
     }
 }
