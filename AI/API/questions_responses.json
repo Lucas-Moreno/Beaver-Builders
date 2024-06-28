@@ -1,26 +1,26 @@
 [
     {
-        "question": "La collecte sélective des déchets est-elle un comportement éco-responsable?",
-        "reponse": true
-    },
-    {
-        "question": "Les énergies renouvelables sont-elles plus efficaces que les énergies fossiles?",
-        "reponse": true
-    },
-    {
-        "question": "Les transports en commun sont-ils bénéfiques pour l'environnement?",
-        "reponse": true
-    },
-    {
-        "question": "Les produits biologiques sont-ils toujours plus éthiques que les produits conventionnels?",
+        "question": "La combustion de charbon est la source d'énergie la plus propre",
         "reponse": false
     },
     {
-        "question": "Le recyclage des bouteilles en plastique est-il éco-responsable?",
-        "réponse": true
+        "question": "La biodiversité est directement liée à la quantité d'oxygène dans l'air",
+        "reponse": false
     },
     {
-        "question": "Les éclairages économiques sont-ils toujours nécessaires pour réduire la consommation d'énergie?",
-        "réponse": false
+        "question": "Les petits déchets plastiques font partie intégrante de la chaîne alimentaire",
+        "reponse": false
+    },
+    {
+        "question": "La production d'énergie éolienne est très coûteuse",
+        "reponse": true
+    },
+    {
+        "question": "Les éco-citoyens peuvent réduire leur impact environnemental en consommant plus de viande",
+        "response": "false"
+    },
+    {
+        "question": "Les économies d'énergie entraînent invariablement une réduction des émissions de gaz à effet de serre",
+        "response": "false"
     }
 ]
