@@ -1,0 +1,26 @@
+[
+    {
+        "question": "La collecte sélective des déchets est-elle un comportement éco-responsable?",
+        "reponse": true
+    },
+    {
+        "question": "Les énergies renouvelables sont-elles plus efficaces que les énergies fossiles?",
+        "reponse": true
+    },
+    {
+        "question": "Les transports en commun sont-ils bénéfiques pour l'environnement?",
+        "reponse": true
+    },
+    {
+        "question": "Les produits biologiques sont-ils toujours plus éthiques que les produits conventionnels?",
+        "reponse": false
+    },
+    {
+        "question": "Le recyclage des bouteilles en plastique est-il éco-responsable?",
+        "réponse": true
+    },
+    {
+        "question": "Les éclairages économiques sont-ils toujours nécessaires pour réduire la consommation d'énergie?",
+        "réponse": false
+    }
+]
